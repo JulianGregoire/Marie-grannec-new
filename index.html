@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marie Grannec - Artiste Peintre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --primary-color: #387C88; /* Le bleu canard du logo */
+            --text-color: #333333;
+            --light-bg: #f9f9f9;
+            --white: #ffffff;
+            --font-title: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-color);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-circle {
+            width: 45px;
+            height: 45px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-family: var(--font-body);
+        }
+
+        .logo-text h1 {
+            font-family: var(--font-body);
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        .logo-text span {
+            font-size: 0.8rem;
+            color: #777;
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #555;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); /* Image d'ambiance abstraite */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h2 {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .hero p {
+            max-width: 600px;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* --- SECTIONS GÉNÉRALES --- */
+        section {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-body);
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 60px;
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-color);
+            margin: 15px auto 0;
+        }
+
+        /* --- TABLEAUX (GALERIE) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .art-card {
+            background: white;
+            transition: transform 0.3s ease;
+        }
+
+        .art-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .art-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background-color: #eee;
+            margin-bottom: 15px;
+        }
+
+        .art-info {
+            text-align: center;
+        }
+
+        .art-title {
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .art-meta {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: #2a606a;
+        }
+
+        /* --- BIOGRAPHIE --- */
+        .bio-section {
+            background-color: var(--light-bg);
+        }
+
+        .bio-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .bio-text {
+            flex: 1;
+        }
+
+        .bio-text p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .bio-image {
+            flex: 1;
+        }
+
+        .bio-image img {
+            width: 100%;
+            border-radius: 2px;
+            box-shadow: 10px 10px 0px var(--primary-color); /* Effet graphique moderne */
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #333; /* Fond sombre pour le contraste */
+            color: #ccc;
+            padding: 60px 5%;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-box {
+            width: 30px;
+            height: 30px;
+            background: #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.8rem;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Pour simplifier, menu caché sur mobile dans cet exemple */
+            .bio-content { flex-direction: column-reverse; }
+            .hero h2 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <div class="logo-circle">MG</div>
+            <div class="logo-text">
+                <h1>Marie Grannec</h1>
+                <span>Artiste Peintre</span>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="#biographie">Biographie</a>
+            <a href="#tableaux">Tableaux</a>
+            <a href="#expositions">Expositions</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h2>"La peinture est un voyage intemporel"</h2>
+        <p>Où la matière, la couleur fluide et les profondeurs prennent vie. Un monde d'abstraction et d'émotions.</p>
+        <a href="#tableaux" class="btn" style="background: transparent; border: 1px solid white;">Voir les œuvres</a>
+    </header>
+
+    <section id="tableaux">
+        <h2 class="section-title">Quelques Tableaux</h2>
+        <div class="gallery-grid">
+            <div class="art-card">
+                <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Peinture Abstraite" class="art-image">
+                <div class="art-info">
+                    <h3 class="art-title">Vibrations</h3>
+                    <p class="art-meta">80 x 80 cm | Huile sur toile</p>
+                </div>
+            </div>
+             <div class="art-card">
+                <img src="https://images.unsplash.com/photo-1579783902614-a3fb39279c15?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Peinture Sombre" class="art-image">
+                <div class="art-info">
+                    <h3 class="art-title">You want it darker</h3>
+                    <p class="art-meta">55 x 81 cm | Huile sur toile | Collection privée</p>
+                </div>
+            </div>
+             <div class="art-card">
+                <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Peinture Claire" class="art-image">
+                <div class="art-info">
+                    <h3 class="art-title">Écume</h3>
+                    <p class="art-meta">80 x 80 cm | Huile sur toile</p>
+                </div>
+            </div>
+        </div>
+        <div class="btn-container">
+            <a href="#" class="btn">Découvrez tous les tableaux</a>
+        </div>
+    </section>
+
+    <section id="biographie" class="bio-section">
+        <h2 class="section-title">Biographie</h2>
+        <div class="bio-content">
+            <div class="bio-text">
+                <p>Bienvenue à Paris, dans mon atelier baigné de lumière. Pour Marie Grannec, la peinture est une exploration constante de la matière et de la couleur. Installée à Bordeaux, je peins comme je respire, laissant l'esprit transporter mes mouvements sur la toile.</p>
+                <p>Mon travail reflète une recherche d'équilibre entre le chaos et l'harmonie, utilisant des pigments naturels et des techniques mixtes pour créer des textures uniques qui invitent au toucher autant qu'au regard.</p>
+                <a href="#" style="color: var(--primary-color); font-weight: bold; border-bottom: 1px solid;">Lire la suite</a>
+            </div>
+            <div class="bio-image">
+                <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Portrait Marie Grannec">
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="logo">
+                    <div class="logo-circle" style="border-color: #fff; color: #fff;">MG</div>
+                    <div class="logo-text">
+                        <h1 style="color: #fff;">Marie Grannec</h1>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; font-size: 0.9rem;">Artiste peintre contemporaine.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Plan du site</h4>
+                <ul>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Biographie</a></li>
+                    <li><a href="#">Tableaux</a></li>
+                    <li><a href="#">Expositions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Coordonnées</h4>
+                <ul>
+                    <li>Tél : 06 13 55 37 90</li>
+                    <li>Email : marie.grannec33@gmail.com</li>
+                </ul>
+                <div class="social-icons">
+                    <a href="#" class="social-box" style="background: #3b5998;">f</a>
+                    <a href="#" class="social-box" style="background: #d62976;">in</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Marie Grannec. Tous droits réservés.
+        </div>
+    </footer>
+</body>
+</html>
