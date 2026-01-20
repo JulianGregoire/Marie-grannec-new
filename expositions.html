@@ -190,13 +190,13 @@
 <body>
 
 <nav>
-  <div class="logo">
+  <a class="logo" href="index.html" aria-label="Aller à l'accueil">
     <div class="logo-circle">MG</div>
     <div class="logo-text">
       <h1>Marie Grannec</h1>
       <span>Artiste Peintre</span>
     </div>
-  </div>
+  </a>
   <div class="nav-links">
     <a href="index.html">Accueil</a>
     <a href="biographie.html">Biographie</a>
@@ -279,14 +279,14 @@
   </div>
 
   <!-- VIDÉO À DROITE -->
-  <div class="expo-media" style="justify-content: center;">
-    <div class="video">
-      <iframe
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        allowfullscreen>
-      </iframe>
-    </div>
+<div class="expo-media" style="justify-content: center;">
+  <div class="video">
+    <video controls autoplay muted loop playsinline>
+      <source src="images/3929271.mp4reportage-France3-artcovid.mp4" type="video/mp4">
+      Ton navigateur ne supporte pas la lecture vidéo.
+    </video>
   </div>
+</div>
 
 </div>
 
@@ -306,22 +306,26 @@
         </div>
       </div>
 
-      <!-- 3 -->
-      <div class="expo-row">
-        <div class="expo-text">
-          <span class="title">« Origines »</span>
-          <div class="meta">
-            <div>4 mai – 1 juillet 2018</div>
-            <div>Institut Bernard Magrez</div>
-            <div>Bordeaux</div>
-          </div>
-        </div>
-        <div class="expo-media">
-          <div class="video">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
+    <!-- 3 -->
+<div class="expo-row">
+  <div class="expo-text">
+    <span class="title">« Origines »</span>
+    <div class="meta">
+      <div>4 mai – 1 juillet 2018</div>
+      <div>Institut Bernard Magrez</div>
+      <div>Bordeaux</div>
+    </div>
+  </div>
+
+  <div class="expo-media">
+    <div class="video">
+      <video controls autoplay muted loop playsinline>
+        <source src="images/sujetavec-lancement.mp4" type="video/mp4">
+        Ton navigateur ne supporte pas la lecture vidéo.
+      </video>
+    </div>
+  </div>
+</div>
       
 
       <!-- 1 -->
@@ -364,25 +368,45 @@
 </section>
 
 
-<footer>
-  <div class="footer-content">
-    <div class="footer-col">
-      <h4>Marie Grannec</h4>
-      <p>Artiste peintre contemporaine</p>
-    </div>
-    <div class="footer-col">
-      <h4>Plan du site</h4>
-      <ul>
-        <li>Accueil</li><li>Biographie</li><li>Tableaux</li><li>Expositions</li><li>Contact</li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Coordonnées</h4>
-      <p>06 13 55 37 90<br>mariegrannec33@gmail.com</p>
-    </div>
-  </div>
-  <div class="copyright">© 2026 Marie Grannec</div>
-</footer>
+ <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <a class="logo" href="index.html" aria-label="Aller à l'accueil">
+                    <div class="logo-circle" style="border-color: #fff; color: #fff;">MG</div>
+                    <div class="logo-text">
+                        <h1 style="color: #fff;">Marie Grannec</h1>
+                    </div>
+                </a>
+                <p style="margin-top: 15px; font-size: 0.9rem;">Artiste peintre contemporaine.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Plan du site</h4>
+                <ul>
+                  <li><a href="index.html">Accueil</a></li>
+                  <li><a href="biographie.html">Biographie</a></li>
+                  <li><a href="tableaux.html">Tableaux</a></li>
+                  <li><a href="expositions.html">Expositions</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Coordonnées</h4>
+                <ul>
+                    <li>Tél : 06 13 55 37 90</li>
+                    <li>Email : marie.grannec33@gmail.com</li>
+                </ul>
+                <div class="social-icons">
+                    <a href="#" class="social-box" style="background: #3b5998;">f</a>
+                    <a href="#" class="social-box" style="background: #d62976;">in</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Marie Grannec. Tous droits réservés.
+        </div>
+    </footer>
 
 </body>
 </html>

@@ -147,14 +147,15 @@
       background: transparent;
     }
 
-    .work a {
+    .work a.thumb {
       display: block;
       border: 1px solid #f0f0f0;
       background: #fff;
+      cursor: zoom-in;
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
 
-    .work a:hover {
+    .work a.thumb:hover {
       transform: translateY(-4px);
       border-color: rgba(56,124,136,0.35);
       box-shadow: 0 12px 30px rgba(0,0,0,0.08);
@@ -172,6 +173,24 @@
       line-height: 1.35;
     }
 
+    .work a.caption-link {
+      display: block;
+      cursor: zoom-in;
+    }
+
+    .work a.caption-link:hover .title,
+    .work a.caption-link:focus-visible .title {
+      color: var(--primary-color);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .work a.caption-link:focus-visible {
+      outline: 2px solid rgba(56,124,136,0.45);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
     .work .title {
       display: block;
       font-weight: 700;
@@ -185,8 +204,72 @@
       color: #8a8a8a;
     }
 
-    .work.tall img { aspect-ratio: 3 / 4; }
-    .work.wide img { aspect-ratio: 4 / 3; }
+    /* --- LIGHTBOX --- */
+    body.no-scroll { overflow: hidden; }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .lightbox.is-open { display: flex; }
+
+    .lightbox__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.72);
+    }
+
+    .lightbox__content {
+      position: relative;
+      z-index: 1;
+      width: min(1100px, 92vw);
+      max-height: 90vh;
+      margin: 0;
+      background: #111;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.35);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lightbox__img {
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+      background: #111;
+    }
+
+    .lightbox__caption {
+      padding: 12px 16px;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.95rem;
+      background: #111;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .lightbox__close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.35);
+      color: #fff;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .lightbox__close:hover { background: rgba(0,0,0,0.55); }
 
     /* --- FOOTER --- */
     footer {
@@ -252,13 +335,13 @@
 
   <!-- NAV -->
   <nav>
-    <div class="logo">
+    <a class="logo" href="index.html" aria-label="Aller à l'accueil">
       <div class="logo-circle">MG</div>
       <div class="logo-text">
         <h1>Marie Grannec</h1>
         <span>Artiste Peintre</span>
       </div>
-    </div>
+    </a>
 
     <div class="nav-links">
       <a href="index.html">Accueil</a>
@@ -284,225 +367,422 @@
 
         <!-- (Tes 15 premiers : inchangés) -->
         <article class="work">
-          <a href="#"><img src="images/Geysers-tableau.jpg" alt="Geysers"></a>
-          <div class="caption"><span class="title">Geysers</span><span class="meta">80 × 80 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/Geysers-tableau.jpg" data-lightbox-src="images/Geysers-tableau.jpg" data-lightbox-alt="Geysers" data-lightbox-caption="Geysers — 80 × 80 cm · Huile sur toile">
+            <img src="images/Geysers-tableau.jpg" alt="Geysers" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/Geysers-tableau.jpg" data-lightbox-src="images/Geysers-tableau.jpg" data-lightbox-alt="Geysers" data-lightbox-caption="Geysers — 80 × 80 cm · Huile sur toile">
+            <span class="title">Geysers</span><span class="meta">80 × 80 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/Après-1-tableau-e1552129954995.jpg" alt="Après 1"></a>
-          <div class="caption"><span class="title">Après 1</span><span class="meta">65 × 81 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/Après-1-tableau-e1552129954995.jpg" data-lightbox-src="images/Après-1-tableau-e1552129954995.jpg" data-lightbox-alt="Après 1" data-lightbox-caption="Après 1 — 65 × 81 cm · Huile sur toile">
+            <img src="images/Après-1-tableau-e1552129954995.jpg" alt="Après 1" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/Après-1-tableau-e1552129954995.jpg" data-lightbox-src="images/Après-1-tableau-e1552129954995.jpg" data-lightbox-alt="Après 1" data-lightbox-caption="Après 1 — 65 × 81 cm · Huile sur toile">
+            <span class="title">Après 1</span><span class="meta">65 × 81 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/blue-water.jpg" alt="Blue water"></a>
-          <div class="caption"><span class="title">Blue water</span><span class="meta">54 × 65 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/Blue-water-tableau.jpg" data-lightbox-src="images/Blue-water-tableau.jpg" data-lightbox-alt="Blue water" data-lightbox-caption="Blue water — 54 × 65 cm · Huile sur toile">
+            <img src="images/Blue-water-tableau.jpg" alt="Blue water" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/Blue-water-tableau.jpg" data-lightbox-src="images/Blue-water-tableau.jpg" data-lightbox-alt="Blue water" data-lightbox-caption="Blue water — 54 × 65 cm · Huile sur toile">
+            <span class="title">Blue water</span><span class="meta">54 × 65 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work tall">
-          <a href="#"><img src="images/bamboo.jpg" alt="Bamboo"></a>
-          <div class="caption"><span class="title">Bamboo</span><span class="meta">80 × 80 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/bambou-tableau.jpg" data-lightbox-src="images/bambou-tableau.jpg" data-lightbox-alt="Bamboo" data-lightbox-caption="Bamboo — 80 × 80 cm · Huile sur toile">
+            <img src="images/bambou-tableau.jpg" alt="Bamboo" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/bambou-tableau.jpg" data-lightbox-src="images/bambou-tableau.jpg" data-lightbox-alt="Bamboo" data-lightbox-caption="Bamboo — 80 × 80 cm · Huile sur toile">
+            <span class="title">Bamboo</span><span class="meta">80 × 80 cm · Huile sur toile</span>
+          </a>
         </article>
+
+        <article class="work">
+          <a class="thumb" href="images/" data-lightbox-src="images/DSC00233.jpg" data-lightbox-alt="Anse" data-lightbox-caption="Anse — 54 × 65 cm · Huile sur toile">
+            <img src="images/" alt="Anse" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/DSC00233.jpg" data-lightbox-src="images/DSC00233.jpg" data-lightbox-alt="Anse" data-lightbox-caption="Anse — 54 × 65 cm · Huile sur toile">
+            <span class="title">Amnésie</span><span class="meta">54 × 65 cm · Huile sur toile </span>
+          </a>
+        </article>
+
 
         <article class="work wide">
-          <a href="#"><img src="images/Mémoire-dadrien-tableau.jpg" alt="Mémoire d'Adrien"></a>
-          <div class="caption"><span class="title">Mémoire d’Adrien</span><span class="meta">65 × 81 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/Mémoire-dadrien-tableau.jpg" data-lightbox-src="images/Mémoire-dadrien-tableau.jpg" data-lightbox-alt="Mémoire d'Adrien" data-lightbox-caption="Mémoire d’Adrien — 65 × 81 cm · Huile sur toile">
+            <img src="images/Mémoire-dadrien-tableau.jpg" alt="Mémoire d'Adrien" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/Mémoire-dadrien-tableau.jpg" data-lightbox-src="images/Mémoire-dadrien-tableau.jpg" data-lightbox-alt="Mémoire d'Adrien" data-lightbox-caption="Mémoire d’Adrien — 65 × 81 cm · Huile sur toile">
+            <span class="title">Mémoire d’Adrien</span><span class="meta">65 × 81 cm · Huile sur toile</span>
+          </a>
+        </article>
+
+        <article class="work">
+          <a class="thumb" href="images/" data-lightbox-src="images/DSC00233.jpg" data-lightbox-alt="Anse" data-lightbox-caption="Anse — 54 × 65 cm · Huile sur toile">
+            <img src="images/" alt="Anse" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/DSC00233.jpg" data-lightbox-src="images/DSC00233.jpg" data-lightbox-alt="Anse" data-lightbox-caption="Anse — 54 × 65 cm · Huile sur toile">
+            <span class="title">Black squares</span><span class="meta">50 × 60 cm · Huile sur toile </span>
+          </a>
+        </article>
+
+
+        <article class="work tall">
+          <a class="thumb" href="images/tableau-accueil-2.jpg" data-lightbox-src="images/tableau-accueil-2.jpg" data-lightbox-alt="Écume" data-lightbox-caption="Écume — 80 × 80 cm · Huile sur toile">
+            <img src="images/tableau-accueil-2.jpg" alt="Écume" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/tableau-accueil-2.jpg" data-lightbox-src="images/tableau-accueil-2.jpg" data-lightbox-alt="Écume" data-lightbox-caption="Écume — 80 × 80 cm · Huile sur toile">
+            <span class="title">Écume</span><span class="meta">80 × 80 cm · Huile sur toile</span>
+          </a>
+        </article>
+
+         <article class="work">
+          <a class="thumb" href="images/" data-lightbox-src="images/DSC00233.jpg" data-lightbox-alt="Anse" data-lightbox-caption="Anse — 54 × 65 cm · Huile sur toile">
+            <img src="images/" alt="Anse" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/DSC00233.jpg" data-lightbox-src="images/DSC00233.jpg" data-lightbox-alt="Anse" data-lightbox-caption="Anse — 54 × 65 cm · Huile sur toile">
+            <span class="title">Vibrations</span><span class="meta">80 × 80 cm · Huile sur toile Collection privée</span>
+          </a>
+        </article>
+
+        <article class="work">
+          <a class="thumb" href="images/DSC00233.jpg" data-lightbox-src="images/DSC00233.jpg" data-lightbox-alt="Anse" data-lightbox-caption="Anse — 54 × 65 cm · Huile sur toile">
+            <img src="images/DSC00233.jpg" alt="Anse" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/DSC00233.jpg" data-lightbox-src="images/DSC00233.jpg" data-lightbox-alt="Anse" data-lightbox-caption="Anse — 54 × 65 cm · Huile sur toile">
+            <span class="title">Anse</span><span class="meta">54 × 65 cm · Huile sur toile</span>
+          </a>
+        </article>
+
+        <article class="work">
+          <a class="thumb" href="images/kosmos-tableau.jpg" data-lightbox-src="images/kosmos-tableau.jpg" data-lightbox-alt="Kosmos" data-lightbox-caption="Kosmos — 54 × 65 cm · Huile sur toile">
+            <img src="images/kosmos-tableau.jpg" alt="Kosmos" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/kosmos-tableau.jpg" data-lightbox-src="images/kosmos-tableau.jpg" data-lightbox-alt="Kosmos" data-lightbox-caption="Kosmos — 54 × 65 cm · Huile sur toile">
+            <span class="title">Kosmos</span><span class="meta">54 × 65 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work tall">
-          <a href="#"><img src="images/tableau-accueil-2.jpg" alt="Écume"></a>
-          <div class="caption"><span class="title">Écume</span><span class="meta">80 × 80 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/577821563135251.jpg" data-lightbox-src="images/577821563135251.jpg" data-lightbox-alt="Tribal" data-lightbox-caption="Tribal — 80 × 80 cm · Huile sur toile">
+            <img src="images/577821563135251.jpg" alt="Tribal" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/577821563135251.jpg" data-lightbox-src="images/577821563135251.jpg" data-lightbox-alt="Tribal" data-lightbox-caption="Tribal — 80 × 80 cm · Huile sur toile">
+            <span class="title">Tribal</span><span class="meta">80 × 80 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/DSC00233.jpg" alt="Anse"></a>
-          <div class="caption"><span class="title">Anse</span><span class="meta">54 × 65 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/579257022609753.jpg" data-lightbox-src="images/579257022609753.jpg" data-lightbox-alt="No man's land - Tryptique 1" data-lightbox-caption="No man’s land — Tryptique 1 — 50 × 70 cm · Huile sur toile">
+            <img src="images/579257022609753.jpg" alt="No man's land - Tryptique 1" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/579257022609753.jpg" data-lightbox-src="images/579257022609753.jpg" data-lightbox-alt="No man's land - Tryptique 1" data-lightbox-caption="No man’s land — Tryptique 1 — 50 × 70 cm · Huile sur toile">
+            <span class="title">No man’s land — Tryptique 1</span><span class="meta">50 × 70 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/kosmos-tableau.jpg" alt="Kosmos"></a>
-          <div class="caption"><span class="title">Kosmos</span><span class="meta">54 × 65 cm · Huile sur toile</span></div>
-        </article>
-
-        <article class="work tall">
-          <a href="#"><img src="images/577821563135251.jpg" alt="Tribal"></a>
-          <div class="caption"><span class="title">Tribal</span><span class="meta">80 × 80 cm · Huile sur toile</span></div>
-        </article>
-
-        <article class="work">
-          <a href="#"><img src="images/579257022609753.jpg" alt="No man's land - Tryptique 1"></a>
-          <div class="caption"><span class="title">No man’s land — Tryptique 1</span><span class="meta">50 × 70 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/579257032612653.jpg" data-lightbox-src="images/579257032612653.jpg" data-lightbox-alt="No man's land - Tryptique 2" data-lightbox-caption="No man’s land — Tryptique 2 — 50 × 70 cm · Huile sur toile">
+            <img src="images/579257032612653.jpg" alt="No man's land - Tryptique 2" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/579257032612653.jpg" data-lightbox-src="images/579257032612653.jpg" data-lightbox-alt="No man's land - Tryptique 2" data-lightbox-caption="No man’s land — Tryptique 2 — 50 × 70 cm · Huile sur toile">
+            <span class="title">No man’s land — Tryptique 2</span><span class="meta">50 × 70 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/579257032612653.jpg" alt="No man's land - Tryptique 2"></a>
-          <div class="caption"><span class="title">No man’s land — Tryptique 2</span><span class="meta">50 × 70 cm · Huile sur toile</span></div>
-        </article>
-
-        <article class="work">
-          <a href="#"><img src="images/579257027120999.jpg" alt="No man's land - Tryptique 3"></a>
-          <div class="caption"><span class="title">No man’s land — Tryptique 3</span><span class="meta">50 × 70 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/579257027120999.jpg" data-lightbox-src="images/579257027120999.jpg" data-lightbox-alt="No man's land - Tryptique 3" data-lightbox-caption="No man’s land — Tryptique 3 — 50 × 70 cm · Huile sur toile">
+            <img src="images/579257027120999.jpg" alt="No man's land - Tryptique 3" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/579257027120999.jpg" data-lightbox-src="images/579257027120999.jpg" data-lightbox-alt="No man's land - Tryptique 3" data-lightbox-caption="No man’s land — Tryptique 3 — 50 × 70 cm · Huile sur toile">
+            <span class="title">No man’s land — Tryptique 3</span><span class="meta">50 × 70 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <!-- ✅ AJOUTS (comme sur ta capture après) -->
 
         <article class="work">
-          <a href="#"><img src="images/578914804755566-e1548797644147.jpg
-" alt="Dyptique - 01"></a>
-          <div class="caption"><span class="title">You want it darker</span><span class="meta">55 × 81 cm · Huile sur toile Collection privée</span></div>
+          <a class="thumb" href="images/578914804755566-e1548797644147.jpg" data-lightbox-src="images/578914804755566-e1548797644147.jpg" data-lightbox-alt="You want it darker" data-lightbox-caption="You want it darker — 55 × 81 cm · Huile sur toile · Collection privée">
+            <img src="images/578914804755566-e1548797644147.jpg" alt="You want it darker" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/578914804755566-e1548797644147.jpg" data-lightbox-src="images/578914804755566-e1548797644147.jpg" data-lightbox-alt="You want it darker" data-lightbox-caption="You want it darker — 55 × 81 cm · Huile sur toile · Collection privée">
+            <span class="title">You want it darker</span><span class="meta">55 × 81 cm · Huile sur toile · Collection privée</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/577821493401639.jpg
-" alt="Dyptique - 01"></a>
-          <div class="caption"><span class="title">Dyptique — 01</span><span class="meta">50 × 70 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/577821493401639.jpg" data-lightbox-src="images/577821493401639.jpg" data-lightbox-alt="Dyptique - 01" data-lightbox-caption="Dyptique — 01 — 50 × 70 cm · Huile sur toile">
+            <img src="images/577821493401639.jpg" alt="Dyptique - 01" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/577821493401639.jpg" data-lightbox-src="images/577821493401639.jpg" data-lightbox-alt="Dyptique - 01" data-lightbox-caption="Dyptique — 01 — 50 × 70 cm · Huile sur toile">
+            <span class="title">Dyptique — 01</span><span class="meta">50 × 70 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/577821487587002.jpg" alt="Dyptique - 02"></a>
-          <div class="caption"><span class="title">Dyptique — 02</span><span class="meta">50 × 70 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/577821487587002.jpg" data-lightbox-src="images/577821487587002.jpg" data-lightbox-alt="Dyptique - 02" data-lightbox-caption="Dyptique — 02 — 50 × 70 cm · Huile sur toile">
+            <img src="images/577821487587002.jpg" alt="Dyptique - 02" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/577821487587002.jpg" data-lightbox-src="images/577821487587002.jpg" data-lightbox-alt="Dyptique - 02" data-lightbox-caption="Dyptique — 02 — 50 × 70 cm · Huile sur toile">
+            <span class="title">Dyptique — 02</span><span class="meta">50 × 70 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work tall">
-          <a href="#"><img src="images/57925571556485.jpg" alt="Stonehenge"></a>
-          <div class="caption"><span class="title">Stonehenge</span><span class="meta">50 × 70 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/57925571556485.jpg" data-lightbox-src="images/57925571556485.jpg" data-lightbox-alt="Stonehenge" data-lightbox-caption="Stonehenge — 50 × 70 cm · Huile sur toile">
+            <img src="images/57925571556485.jpg" alt="Stonehenge" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/57925571556485.jpg" data-lightbox-src="images/57925571556485.jpg" data-lightbox-alt="Stonehenge" data-lightbox-caption="Stonehenge — 50 × 70 cm · Huile sur toile">
+            <span class="title">Stonehenge</span><span class="meta">50 × 70 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work tall">
-          <a href="#"><img src="images/579121240686932.jpg" alt="Totem"></a>
-          <div class="caption"><span class="title">Totem</span><span class="meta">50 × 70 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/579121240686932.jpg" data-lightbox-src="images/579121240686932.jpg" data-lightbox-alt="Totem" data-lightbox-caption="Totem — 50 × 70 cm · Huile sur toile">
+            <img src="images/579121240686932.jpg" alt="Totem" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/579121240686932.jpg" data-lightbox-src="images/579121240686932.jpg" data-lightbox-alt="Totem" data-lightbox-caption="Totem — 50 × 70 cm · Huile sur toile">
+            <span class="title">Totem</span><span class="meta">50 × 70 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/578914825979306-e1552133043548.jpg" alt="Après 2"></a>
-          <div class="caption"><span class="title">Après 2</span><span class="meta">65 × 81 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/578914825979306-e1552133043548.jpg" data-lightbox-src="images/578914825979306-e1552133043548.jpg" data-lightbox-alt="Après 2" data-lightbox-caption="Après 2 — 65 × 81 cm · Huile sur toile">
+            <img src="images/578914825979306-e1552133043548.jpg" alt="Après 2" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/578914825979306-e1552133043548.jpg" data-lightbox-src="images/578914825979306-e1552133043548.jpg" data-lightbox-alt="Après 2" data-lightbox-caption="Après 2 — 65 × 81 cm · Huile sur toile">
+            <span class="title">Après 2</span><span class="meta">65 × 81 cm · Huile sur toile</span>
+          </a>
         </article>
 
 
         <article class="work wide">
-          <a href="#"><img src="images/" alt="New York"></a>
-          <div class="caption"><span class="title">Le monde d'en haut</span><span class="meta">80 × 100 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/80-x-100-huile-sur-toile.jpg" data-lightbox-src="images/80-x-100-huile-sur-toile.jpg" data-lightbox-alt="Le monde d'en haut" data-lightbox-caption="Le monde d'en haut — 80 × 100 cm · Huile sur toile">
+            <img src="images/80-x-100-huile-sur-toile.jpg" alt="Le monde d'en haut" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/80-x-100-huile-sur-toile.jpg" data-lightbox-src="images/80-x-100-huile-sur-toile.jpg" data-lightbox-alt="Le monde d'en haut" data-lightbox-caption="Le monde d'en haut — 80 × 100 cm · Huile sur toile">
+            <span class="title">Le monde d'en haut</span><span class="meta">80 × 100 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work wide">
-          <a href="#"><img src="images/57868856226959-e1552133343695.jpg
-" alt="New York"></a>
-          <div class="caption"><span class="title">New York</span><span class="meta">50 × 100 cm · Technique mixte</span></div>
+          <a class="thumb" href="images/57868856226959-e1552133343695.jpg" data-lightbox-src="images/57868856226959-e1552133343695.jpg" data-lightbox-alt="New York" data-lightbox-caption="New York — 50 × 100 cm · Technique mixte">
+            <img src="images/57868856226959-e1552133343695.jpg" alt="New York" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/57868856226959-e1552133343695.jpg" data-lightbox-src="images/57868856226959-e1552133343695.jpg" data-lightbox-alt="New York" data-lightbox-caption="New York — 50 × 100 cm · Technique mixte">
+            <span class="title">New York</span><span class="meta">50 × 100 cm · Technique mixte</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/578688513177716-e1550866741250.jpg
-" alt="L’arbre rouge"></a>
-          <div class="caption"><span class="title">L’arbre rouge</span><span class="meta">60 × 90 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/578688513177716-e1550866741250.jpg" data-lightbox-src="images/578688513177716-e1550866741250.jpg" data-lightbox-alt="L’arbre rouge" data-lightbox-caption="L’arbre rouge — 60 × 90 cm · Huile sur toile">
+            <img src="images/578688513177716-e1550866741250.jpg" alt="L’arbre rouge" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/578688513177716-e1550866741250.jpg" data-lightbox-src="images/578688513177716-e1550866741250.jpg" data-lightbox-alt="L’arbre rouge" data-lightbox-caption="L’arbre rouge — 60 × 90 cm · Huile sur toile">
+            <span class="title">L’arbre rouge</span><span class="meta">60 × 90 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/577821499900098-e1549826414474.jpg" alt="Somewhere"></a>
-          <div class="caption"><span class="title">Somewhere</span><span class="meta">80 × 80 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/577821499900098-e1549826414474.jpg" data-lightbox-src="images/577821499900098-e1549826414474.jpg" data-lightbox-alt="Somewhere" data-lightbox-caption="Somewhere — 80 × 80 cm · Huile sur toile">
+            <img src="images/577821499900098-e1549826414474.jpg" alt="Somewhere" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/577821499900098-e1549826414474.jpg" data-lightbox-src="images/577821499900098-e1549826414474.jpg" data-lightbox-alt="Somewhere" data-lightbox-caption="Somewhere — 80 × 80 cm · Huile sur toile">
+            <span class="title">Somewhere</span><span class="meta">80 × 80 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/Le77821499900098.jpg" alt="Le grand bleu"></a>
-          <div class="caption"><span class="title">Le grand bleu</span><span class="meta">73 × 92 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/Le77821499900098.jpg" data-lightbox-src="images/Le77821499900098.jpg" data-lightbox-alt="Le grand bleu" data-lightbox-caption="Le grand bleu — 73 × 92 cm · Huile sur toile">
+            <img src="images/Le77821499900098.jpg" alt="Le grand bleu" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/Le77821499900098.jpg" data-lightbox-src="images/Le77821499900098.jpg" data-lightbox-alt="Le grand bleu" data-lightbox-caption="Le grand bleu — 73 × 92 cm · Huile sur toile">
+            <span class="title">Le grand bleu</span><span class="meta">73 × 92 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work wide">
-          <a href="#"><img src="images/577820638527631-e1549826950807.jpg" alt="Tour City"></a>
-          <div class="caption"><span class="title">Tour City</span><span class="meta">50 × 100 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/577820638527631-e1549826950807.jpg" data-lightbox-src="images/577820638527631-e1549826950807.jpg" data-lightbox-alt="Tour City" data-lightbox-caption="Tour City — 50 × 100 cm · Huile sur toile">
+            <img src="images/577820638527631-e1549826950807.jpg" alt="Tour City" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/577820638527631-e1549826950807.jpg" data-lightbox-src="images/577820638527631-e1549826950807.jpg" data-lightbox-alt="Tour City" data-lightbox-caption="Tour City — 50 × 100 cm · Huile sur toile">
+            <span class="title">Tour D'or</span><span class="meta">50 × 100 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work tall">
-          <a href="#"><img src="images/578688525234647-e1549830272503.jpg" alt="À l’infini"></a>
-          <div class="caption"><span class="title">À l’infini</span><span class="meta">70 × 50 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/578688525234647-e1549830272503.jpg" data-lightbox-src="images/578688525234647-e1549830272503.jpg" data-lightbox-alt="À l’infini" data-lightbox-caption="À l’infini — 70 × 50 cm · Huile sur toile">
+            <img src="images/578688525234647-e1549830272503.jpg" alt="À l’infini" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/578688525234647-e1549830272503.jpg" data-lightbox-src="images/578688525234647-e1549830272503.jpg" data-lightbox-alt="À l’infini" data-lightbox-caption="À l’infini — 70 × 50 cm · Huile sur toile">
+            <span class="title">À l’infini</span><span class="meta">70 × 50 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/579256602379269-e1549830127509.jpg" alt="Éclat de vert"></a>
-          <div class="caption"><span class="title">Éclat de vert</span><span class="meta">54 × 65 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/579256602379269-e1549830127509.jpg" data-lightbox-src="images/579256602379269-e1549830127509.jpg" data-lightbox-alt="Éclat de vert" data-lightbox-caption="Éclat de vert — 54 × 65 cm · Huile sur toile">
+            <img src="images/579256602379269-e1549830127509.jpg" alt="Éclat de vert" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/579256602379269-e1549830127509.jpg" data-lightbox-src="images/579256602379269-e1549830127509.jpg" data-lightbox-alt="Éclat de vert" data-lightbox-caption="Éclat de vert — 54 × 65 cm · Huile sur toile">
+            <span class="title">Éclat de vert</span><span class="meta">54 × 65 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work wide">
-          <a href="#"><img src="images/golden-gate-e1549829775416.jpg" alt="Golden Gate"></a>
-          <div class="caption"><span class="title">Golden Gate</span><span class="meta">60 × 90 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/golden-gate-e1549829775416.jpg" data-lightbox-src="images/golden-gate-e1549829775416.jpg" data-lightbox-alt="Golden Gate" data-lightbox-caption="Golden Gate — 60 × 90 cm · Huile sur toile">
+            <img src="images/golden-gate-e1549829775416.jpg" alt="Golden Gate" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/golden-gate-e1549829775416.jpg" data-lightbox-src="images/golden-gate-e1549829775416.jpg" data-lightbox-alt="Golden Gate" data-lightbox-caption="Golden Gate — 60 × 90 cm · Huile sur toile">
+            <span class="title">Golden Gate</span><span class="meta">60 × 90 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work wide">
-          <a href="#"><img src="images/578688575479962-e1549829908262.jpg" alt="Noir et blanc"></a>
-          <div class="caption"><span class="title">Noir et blanc</span><span class="meta">48 × 65 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/578688575479962-e1549829908262.jpg" data-lightbox-src="images/578688575479962-e1549829908262.jpg" data-lightbox-alt="Noir et blanc" data-lightbox-caption="Noir et blanc — 48 × 65 cm · Huile sur toile">
+            <img src="images/578688575479962-e1549829908262.jpg" alt="Noir et blanc" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/578688575479962-e1549829908262.jpg" data-lightbox-src="images/578688575479962-e1549829908262.jpg" data-lightbox-alt="Noir et blanc" data-lightbox-caption="Noir et blanc — 48 × 65 cm · Huile sur toile">
+            <span class="title">Noir et blanc</span><span class="meta">48 × 65 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/577821473114835-e1552133092733.jpg" alt="Emerg"></a>
-          <div class="caption"><span class="title">Emerg</span><span class="meta">65 × 81 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/577821473114835-e1552133092733.jpg" data-lightbox-src="images/577821473114835-e1552133092733.jpg" data-lightbox-alt="Emerg" data-lightbox-caption="Emerg — 65 × 81 cm · Huile sur toile">
+            <img src="images/577821473114835-e1552133092733.jpg" alt="Emerg" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/577821473114835-e1552133092733.jpg" data-lightbox-src="images/577821473114835-e1552133092733.jpg" data-lightbox-alt="Emerg" data-lightbox-caption="Emerg — 65 × 81 cm · Huile sur toile">
+            <span class="title">Emergé</span><span class="meta">65 × 81 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/Le7782149990adz0098-e1549826934245.jpg" alt="Abstrait jaune et bleu"></a>
-          <div class="caption"><span class="title">Abstrait jaune et bleu</span><span class="meta">50 × 50 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/Le7782149990adz0098-e1549826934245.jpg" data-lightbox-src="images/Le7782149990adz0098-e1549826934245.jpg" data-lightbox-alt="Abstrait jaune et bleu" data-lightbox-caption="Abstrait jaune et bleu — 50 × 50 cm · Huile sur toile">
+            <img src="images/Le7782149990adz0098-e1549826934245.jpg" alt="Abstrait jaune et bleu" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/Le7782149990adz0098-e1549826934245.jpg" data-lightbox-src="images/Le7782149990adz0098-e1549826934245.jpg" data-lightbox-alt="Abstrait jaune et bleu" data-lightbox-caption="Abstrait jaune et bleu — 50 × 50 cm · Huile sur toile">
+            <span class="title">Abstrait jaune et bleu</span><span class="meta">50 × 50 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/abstract-2-e1549826899157.jpg" alt="Abstrait jaune"></a>
-          <div class="caption"><span class="title">Abstrait jaune</span><span class="meta">50 × 50 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/abstract-2-e1549826899157.jpg" data-lightbox-src="images/abstract-2-e1549826899157.jpg" data-lightbox-alt="Abstrait jaune" data-lightbox-caption="Abstrait jaune — 50 × 50 cm · Huile sur toile">
+            <img src="images/abstract-2-e1549826899157.jpg" alt="Abstrait jaune" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/abstract-2-e1549826899157.jpg" data-lightbox-src="images/abstract-2-e1549826899157.jpg" data-lightbox-alt="Abstrait jaune" data-lightbox-caption="Abstrait jaune — 50 × 50 cm · Huile sur toile">
+            <span class="title">Abstrait jaune</span><span class="meta">50 × 50 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/577820627762723-e1549830378348.jpg" alt="Ombres perdues"></a>
-          <div class="caption"><span class="title">Ombres perdues</span><span class="meta">48 × 65 cm · Acrylique sur carton toilé</span></div>
+          <a class="thumb" href="images/577820627762723-e1549830378348.jpg" data-lightbox-src="images/577820627762723-e1549830378348.jpg" data-lightbox-alt="Ombres perdues" data-lightbox-caption="Ombres perdues — 48 × 65 cm · Acrylique sur carton toilé">
+            <img src="images/577820627762723-e1549830378348.jpg" alt="Ombres perdues" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/577820627762723-e1549830378348.jpg" data-lightbox-src="images/577820627762723-e1549830378348.jpg" data-lightbox-alt="Ombres perdues" data-lightbox-caption="Ombres perdues — 48 × 65 cm · Acrylique sur carton toilé">
+            <span class="title">Ombres perdues</span><span class="meta">48 × 65 cm · Acrylique sur carton toilé</span>
+          </a>
         </article>
 
         <article class="work tall">
-          <a href="#"><img src="images/577821556332730-e1549830459836.jpg" alt="Promo"></a>
-          <div class="caption"><span class="title">Promo</span><span class="meta">30 × 90 cm · Acrylique sur carton</span></div>
+          <a class="thumb" href="images/577821556332730-e1549830459836.jpg" data-lightbox-src="images/577821556332730-e1549830459836.jpg" data-lightbox-alt="Promo" data-lightbox-caption="Promo — 30 × 90 cm · Acrylique sur carton">
+            <img src="images/577821556332730-e1549830459836.jpg" alt="Promo" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/577821556332730-e1549830459836.jpg" data-lightbox-src="images/577821556332730-e1549830459836.jpg" data-lightbox-alt="Promo" data-lightbox-caption="Promo — 30 × 90 cm · Acrylique sur carton">
+            <span class="title">Pompei</span><span class="meta">33 × 43 cm · Acrylique sur carton</span>
+          </a>
         </article>
 
         <article class="work wide">
-          <a href="#"><img src="images/cite-bleue.jpg" alt="Ciel bleu"></a>
-          <div class="caption"><span class="title">Ciel bleu</span><span class="meta">50 × 100 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/cite-bleue.jpg" data-lightbox-src="images/cite-bleue.jpg" data-lightbox-alt="Ciel bleu" data-lightbox-caption="Ciel bleu — 50 × 100 cm · Huile sur toile">
+            <img src="images/cite-bleue.jpg" alt="Ciel bleu" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/cite-bleue.jpg" data-lightbox-src="images/cite-bleue.jpg" data-lightbox-alt="Ciel bleu" data-lightbox-caption="Ciel bleu — 50 × 100 cm · Huile sur toile">
+            <span class="title">Ciel bleu</span><span class="meta">50 × 100 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work wide">
-          <a href="#"><img src="images/entre-deux.jpg" alt="Entre deux"></a>
-          <div class="caption"><span class="title">Entre deux</span><span class="meta">50 × 70 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/entre-deux.jpg" data-lightbox-src="images/entre-deux.jpg" data-lightbox-alt="Entre deux" data-lightbox-caption="Entre deux — 50 × 70 cm · Huile sur toile">
+            <img src="images/entre-deux.jpg" alt="Entre deux" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/entre-deux.jpg" data-lightbox-src="images/entre-deux.jpg" data-lightbox-alt="Entre deux" data-lightbox-caption="Entre deux — 50 × 70 cm · Huile sur toile">
+            <span class="title">Entre deux</span><span class="meta">50 × 70 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work wide">
-          <a href="#"><img src="images/cite-verte.jpg-1.jpg" alt="Cité verte"></a>
-          <div class="caption"><span class="title">Cité verte</span><span class="meta">50 × 100 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/cite-verte.jpg-1.jpg" data-lightbox-src="images/cite-verte.jpg-1.jpg" data-lightbox-alt="Cité verte" data-lightbox-caption="Cité verte — 50 × 100 cm · Huile sur toile">
+            <img src="images/cite-verte.jpg-1.jpg" alt="Cité verte" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/cite-verte.jpg-1.jpg" data-lightbox-src="images/cite-verte.jpg-1.jpg" data-lightbox-alt="Cité verte" data-lightbox-caption="Cité verte — 50 × 100 cm · Huile sur toile">
+            <span class="title">Cité verte</span><span class="meta">50 × 100 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work wide">
-          <a href="#"><img src="images/50-x-60-cm.jpg" alt="Ellipse"></a>
-          <div class="caption"><span class="title">Ellipse</span><span class="meta">50 × 100 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/50-x-60-cm.jpg" data-lightbox-src="images/50-x-60-cm.jpg" data-lightbox-alt="Ellipse" data-lightbox-caption="Ellipse — 50 × 100 cm · Huile sur toile">
+            <img src="images/50-x-60-cm.jpg" alt="Ellipse" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/50-x-60-cm.jpg" data-lightbox-src="images/50-x-60-cm.jpg" data-lightbox-alt="Ellipse" data-lightbox-caption="Ellipse — 50 × 100 cm · Huile sur toile">
+            <span class="title">Ellipse</span><span class="meta">50 × 100 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/80-x80-huile-sur-toile.jpg" alt="Bleu"></a>
-          <div class="caption"><span class="title">Bleu</span><span class="meta">80 × 80 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/80-x80-huile-sur-toile.jpg" data-lightbox-src="images/80-x80-huile-sur-toile.jpg" data-lightbox-alt="Bleu" data-lightbox-caption="Bleu — 80 × 80 cm · Huile sur toile">
+            <img src="images/80-x80-huile-sur-toile.jpg" alt="Bleu" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/80-x80-huile-sur-toile.jpg" data-lightbox-src="images/80-x80-huile-sur-toile.jpg" data-lightbox-alt="Bleu" data-lightbox-caption="Bleu — 80 × 80 cm · Huile sur toile">
+            <span class="title">Bleu</span><span class="meta">80 × 80 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/80-x-80-huile-sur-toile.jpg" alt="Spirale"></a>
-          <div class="caption"><span class="title">Spirale</span><span class="meta">65 × 81 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/80-x-80-huile-sur-toile.jpg" data-lightbox-src="images/80-x-80-huile-sur-toile.jpg" data-lightbox-alt="Spirale" data-lightbox-caption="Spirale — 65 × 81 cm · Huile sur toile">
+            <img src="images/80-x-80-huile-sur-toile.jpg" alt="Spirale" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/80-x-80-huile-sur-toile.jpg" data-lightbox-src="images/80-x-80-huile-sur-toile.jpg" data-lightbox-alt="Spirale" data-lightbox-caption="Spirale — 65 × 81 cm · Huile sur toile">
+            <span class="title">Spirale</span><span class="meta">65 × 81 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/65-x-81-huile-sur-toile.jpg" alt="Anneau"></a>
-          <div class="caption"><span class="title">Anneau</span><span class="meta">65 × 81 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/65-x-81-huile-sur-toile.jpg" data-lightbox-src="images/65-x-81-huile-sur-toile.jpg" data-lightbox-alt="Anneau" data-lightbox-caption="Anneau — 65 × 81 cm · Huile sur toile">
+            <img src="images/65-x-81-huile-sur-toile.jpg" alt="Anneau" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/65-x-81-huile-sur-toile.jpg" data-lightbox-src="images/65-x-81-huile-sur-toile.jpg" data-lightbox-alt="Anneau" data-lightbox-caption="Anneau — 65 × 81 cm · Huile sur toile">
+            <span class="title">Anneau</span><span class="meta">65 × 81 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work">
-          <a href="#"><img src="images/50-x-70-huile-sur-toile.jpg" alt="Rouge"></a>
-          <div class="caption"><span class="title">Rouge</span><span class="meta">50 × 70 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/50-x-70-huile-sur-toile.jpg" data-lightbox-src="images/50-x-70-huile-sur-toile.jpg" data-lightbox-alt="Rouge" data-lightbox-caption="Rouge — 50 × 70 cm · Huile sur toile">
+            <img src="images/50-x-70-huile-sur-toile.jpg" alt="Rouge" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/50-x-70-huile-sur-toile.jpg" data-lightbox-src="images/50-x-70-huile-sur-toile.jpg" data-lightbox-alt="Rouge" data-lightbox-caption="Rouge — 50 × 70 cm · Huile sur toile">
+            <span class="title">Rouge</span><span class="meta">50 × 70 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work wide">
-          <a href="#"><img src="images/50-x-100-huile-sur-toile.jpg" alt="Paysage"></a>
-          <div class="caption"><span class="title">Paysage</span><span class="meta">50 × 100 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/50-x-100-huile-sur-toile.jpg" data-lightbox-src="images/50-x-100-huile-sur-toile.jpg" data-lightbox-alt="Paysage" data-lightbox-caption="Paysage — 50 × 100 cm · Huile sur toile">
+            <img src="images/50-x-100-huile-sur-toile.jpg" alt="Paysage" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/50-x-100-huile-sur-toile.jpg" data-lightbox-src="images/50-x-100-huile-sur-toile.jpg" data-lightbox-alt="Paysage" data-lightbox-caption="Paysage — 50 × 100 cm · Huile sur toile">
+            <span class="title">Paysage</span><span class="meta">50 × 100 cm · Huile sur toile</span>
+          </a>
         </article>
 
         <article class="work wide">
-          <a href="#"><img src="images/80-x-100-huile-sur-toile.jpg" alt="Paysage"></a>
-          <div class="caption"><span class="title">Paysage</span><span class="meta">80 × 120 cm · Huile sur toile</span></div>
+          <a class="thumb" href="images/80-x-100-huile-sur-toile.jpg" data-lightbox-src="images/80-x-100-huile-sur-toile.jpg" data-lightbox-alt="Paysage" data-lightbox-caption="Paysage — 80 × 120 cm · Huile sur toile">
+            <img src="images/80-x-100-huile-sur-toile.jpg" alt="Paysage" loading="lazy">
+          </a>
+          <a class="caption caption-link" href="images/80-x-100-huile-sur-toile.jpg" data-lightbox-src="images/80-x-100-huile-sur-toile.jpg" data-lightbox-alt="Paysage" data-lightbox-caption="Paysage — 80 × 120 cm · Huile sur toile">
+            <span class="title">Paysage</span><span class="meta">80 × 120 cm · Huile sur toile</span>
+          </a>
         </article>
 
       </div>
@@ -510,47 +790,103 @@
   </section>
 
   <!-- FOOTER -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-col">
-        <div class="logo">
-          <div class="logo-circle" style="border-color:#fff;color:#fff;">MG</div>
-          <div class="logo-text">
-            <h1 style="color:#fff;">Marie Grannec</h1>
-          </div>
-        </div>
-        <p style="margin-top: 15px; font-size: 0.9rem;">Artiste peintre contemporaine.</p>
-      </div>
+   <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <a class="logo" href="index.html" aria-label="Aller à l'accueil">
+                    <div class="logo-circle" style="border-color: #fff; color: #fff;">MG</div>
+                    <div class="logo-text">
+                        <h1 style="color: #fff;">Marie Grannec</h1>
+                    </div>
+                </a>
+                <p style="margin-top: 15px; font-size: 0.9rem;">Artiste peintre contemporaine.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Plan du site</h4>
+                <ul>
+                  <li><a href="index.html">Accueil</a></li>
+                  <li><a href="biographie.html">Biographie</a></li>
+                  <li><a href="tableaux.html">Tableaux</a></li>
+                  <li><a href="expositions.html">Expositions</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
 
-      <div class="footer-col">
-        <h4>Plan du site</h4>
-        <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="biographie.html">Biographie</a></li>
-          <li><a href="tableaux.html">Tableaux</a></li>
-          <li><a href="expositions.html">Expositions</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="mentions-legales.html">Mentions légales</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Coordonnées</h4>
-        <ul>
-          <li>Tél : 06 13 55 37 90</li>
-          <li>Email : marie.grannec33@gmail.com</li>
-        </ul>
-        <div class="social-icons">
-          <a href="#" class="social-box" aria-label="Facebook">f</a>
-          <a href="#" class="social-box" aria-label="Instagram">ig</a>
+            <div class="footer-col">
+                <h4>Coordonnées</h4>
+                <ul>
+                    <li>Tél : 06 13 55 37 90</li>
+                    <li>Email : marie.grannec33@gmail.com</li>
+                </ul>
+                <div class="social-icons">
+                    <a href="#" class="social-box" style="background: #3b5998;">f</a>
+                    <a href="#" class="social-box" style="background: #d62976;">in</a>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="copyright">
+            &copy; 2026 Marie Grannec. Tous droits réservés.
+        </div>
+    </footer>
+
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+      <div class="lightbox__backdrop" data-lightbox-close></div>
+      <figure class="lightbox__content" role="dialog" aria-modal="true" aria-label="Agrandissement du tableau">
+        <button type="button" class="lightbox__close" aria-label="Fermer" data-lightbox-close>×</button>
+        <img id="lightboxImg" class="lightbox__img" alt="">
+        <figcaption id="lightboxCaption" class="lightbox__caption"></figcaption>
+      </figure>
     </div>
 
-    <div class="copyright">
-      &copy; 2026 Marie Grannec. Tous droits réservés.
-    </div>
-  </footer>
+    <script>
+      (() => {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+
+        if (!lightbox || !lightboxImg || !lightboxCaption) return;
+
+        const openLightbox = ({ src, alt, caption }) => {
+          lightboxImg.src = src;
+          lightboxImg.alt = alt || '';
+          lightboxCaption.textContent = caption || '';
+          lightbox.classList.add('is-open');
+          lightbox.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('no-scroll');
+        };
+
+        const closeLightbox = () => {
+          if (!lightbox.classList.contains('is-open')) return;
+          lightbox.classList.remove('is-open');
+          lightbox.setAttribute('aria-hidden', 'true');
+          document.body.classList.remove('no-scroll');
+          lightboxImg.src = '';
+        };
+
+        document.addEventListener('click', (event) => {
+          const trigger = event.target.closest('[data-lightbox-src]');
+          if (trigger) {
+            event.preventDefault();
+            openLightbox({
+              src: trigger.dataset.lightboxSrc,
+              alt: trigger.dataset.lightboxAlt,
+              caption: trigger.dataset.lightboxCaption,
+            });
+            return;
+          }
+
+          if (event.target.closest('[data-lightbox-close]')) {
+            event.preventDefault();
+            closeLightbox();
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeLightbox();
+        });
+      })();
+    </script>
 
 </body>
 </html>
