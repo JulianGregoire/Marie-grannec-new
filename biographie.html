@@ -227,6 +227,11 @@
       align-items: start;
     }
 
+    .align-center { align-items: center; }
+    .mb-xl { margin-bottom: 120px; }
+    .mt-md { margin-top: 40px; }
+    .pb-xl { padding-bottom: 160px; }
+
     .text p {
       margin-bottom: 18px;
       text-align: justify;
@@ -377,6 +382,12 @@
     }
 
     @media (max-width: 768px) {
+      section { padding: 60px 5%; }
+      .mb-xl { margin-bottom: 60px; }
+      .pb-xl { padding-bottom: 100px; }
+      .two-col, .media-row, .split-quotes, .discover-grid { gap: 24px; }
+      .text p { text-align: left; font-size: 1rem; }
+
       .nav-toggle { display: flex; }
 
       .nav-links {
@@ -395,6 +406,13 @@
       nav.nav-open .nav-links { display: flex; }
       .nav-links a { padding: 6px 0; }
       .hero h2 { font-size: 2.5rem; }
+    }
+
+    @media (max-width: 520px) {
+      .logo-img { height: 40px; max-width: 220px; }
+      .hero h2 { font-size: 2.15rem; }
+      .hero p { font-size: 1rem; }
+      .section-title { font-size: 1.25rem; margin-bottom: 40px; }
     }
   </style>
 </head>
@@ -435,7 +453,7 @@
     
     <h2 class="section-title">À propos de l'artiste<span class="section-subtitle">Son parcours</span></h2>
 
-    <div class="two-col" style="display:flex; align-items:center; gap:40px;">
+    <div class="two-col align-center">
       
       <!-- TEXTE -->
       <div class="text">
@@ -462,12 +480,12 @@
 
 
  <!-- SON APPROCHE -->
-<section class="block light" style="padding-bottom: 160px;">
+<section class="block light pb-xl">
   <div class="container">
     <h2 class="section-title">Son approche</h2>
 
     <!-- TEXTE + IMAGE -->
-    <div class="two-col" style="align-items: center; margin-bottom: 120px;">
+    <div class="two-col align-center mb-xl">
       <div class="text">
         <div class="quote">
         <p>
@@ -520,7 +538,7 @@
     </div>
 
     <!-- IMAGE EXPO + CITATION -->
-    <div class="media-row" style="align-items: center; margin-bottom: 120px;">
+    <div class="media-row align-center mb-xl">
       <img class="media-img" src="images/Photo-galerie-.jpg" alt="Photo exposition" />
 
       <div class="quote">
@@ -533,7 +551,7 @@
     </div>
 
     <!-- DEUX CITATIONS -->
-    <div class="split-quotes" style="margin-bottom: 120px;">
+    <div class="split-quotes mb-xl">
       <div class="quote">
         <p>
           « Peindre, c’est combattre le vide, nier l’ennui. Avant, il n’y a rien qu’une toile vierge et silencieuse. Peindre, c’est proposer, inviter à regarder, à voir. Marie Grannec fait partie de ces faiseurs discrets dont les œuvres sont des odes au mouvement. Sa peinture est vivante et sobre, c’est un message direct et pur. Le vent nous effleure, le sable d’un désert inconnu semble sortir d’une toile. Puissiez-vous prendre plaisir à partager son univers, dans chacune de ses toiles se cache un mystère. »
@@ -550,7 +568,7 @@
     </div>
 
     <!-- DERNIÈRE IMAGE + TEXTE -->
-   <div class="media-row" style="align-items: center; margin-top: 40px;">
+    <div class="media-row align-center mt-md">
   <img class="media-img" src="images/578914825979306-e1552133043548.jpg" alt="Tableau" />
 
       <div class="quote">
@@ -611,6 +629,7 @@
                   <li><a href="tableaux.html">Tableaux</a></li>
                   <li><a href="expositions.html">Expositions</a></li>
                   <li><a href="contact.html">Contact</a></li>
+                  <li><a href="mentions-legales.html">Mentions légales</a></li>
                 </ul>
             </div>
 

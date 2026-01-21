@@ -147,6 +147,10 @@
       gap:80px;
       align-items:center;
     }
+
+    .expo-row--single{grid-template-columns:1fr}
+    .expo-media--col{flex-direction:column;align-items:center}
+    .expo-credit{margin-top:10px;text-align:center;color:#777;font-size:.85rem}
     .expo-row.reverse .expo-text{order:2}
     .expo-row.reverse .expo-media{order:1}
 
@@ -177,6 +181,7 @@
       aspect-ratio:16/9;
       box-shadow:0 12px 30px rgba(0,0,0,.08);
     }
+    .video video{width:100%;height:100%;display:block;object-fit:cover}
     .video iframe{width:100%;height:100%;border:0}
 
     /* FOOTER */
@@ -227,6 +232,11 @@
       .hero h2{font-size:2.4rem}
     }
     @media(max-width:768px){
+      section{padding:60px 5%}
+      .expo-list{gap:70px}
+      .expo-row{gap:28px;justify-items:center}
+      .expo-text{max-width:720px;margin:0 auto}
+
       .nav-toggle{display:flex}
 
       .nav-links{
@@ -283,9 +293,9 @@
 
 
 
-<!-- 1 -->
-<div class="expo-row" style="display: flex; justify-content: center; align-items: center; min-height: 260px;">
-  <div class="expo-text" style="text-align: center; max-width: 700px;">
+<!-- 1 (texte seul) -->
+<div class="expo-row expo-row--single" style="min-height: 260px;">
+  <div class="expo-text" style="max-width: 700px; margin: 0 auto;">
     <span class="title">« Rencontre avec les auteurs et les artistes peintres »</span>
     <div class="meta">
       <div>Du 21 et 22 mai 2022</div>
@@ -326,18 +336,18 @@
       </div>
 
   <!-- 3 : IMAGE + TEXTE + VIDÉO -->
-<div class="expo-row" style="grid-template-columns: 1fr 1fr; align-items: center; margin-bottom: 60px;">
+<div class="expo-row">
   
   <!-- IMAGE À GAUCHE -->
-  <div class="expo-media" style="justify-content: center;">
+  <div class="expo-media">
     <img class="artwork" src="images/En-residence-a-la-Halle-des-Chartrons-.jpg" alt="Art / Covid">
   </div>
 
   <!-- TEXTE + VIDÉO À DROITE -->
-  <div class="expo-media" style="flex-direction: column; align-items: center;">
+  <div class="expo-media expo-media--col">
 
     <!-- TEXTE AU-DESSUS DE LA VIDÉO -->
-    <div class="expo-text" style="text-align: center; max-width: 700px; margin-bottom: 20px;">
+    <div class="expo-text" style="max-width: 700px; margin-bottom: 20px;">
       <span class="title">« Art / Covid »</span>
       <div class="meta">
         <div>Du 8 mars au 2 avril 2021</div>
@@ -354,7 +364,7 @@
 </div>
 
 <!-- CRÉDITS -->
-<div style="margin-top: 10px; text-align: center; color: #777; font-size: 0.85rem;">
+<div class="expo-credit">
   <div>France3 artcovid</div>
   <div>Copyright : Tous droits réservés France 3</div>
 </div>
@@ -391,7 +401,7 @@
   </div>
 
   <!-- COLONNE VIDÉO -->
-  <div class="expo-media" style="display: flex; flex-direction: column; align-items: center;">
+  <div class="expo-media expo-media--col">
     
     <!-- VIDÉO -->
     <div class="video">
@@ -402,9 +412,7 @@
     </div>
 
     <!-- CRÉDIT EN DESSOUS (DANS LE FLUX) -->
-    <div style="margin-top: 10px; text-align: center; color: #777; font-size: 0.85rem;">
-      Copyright : Tous droits réservés France 3
-    </div>
+    <div class="expo-credit">Copyright : Tous droits réservés France 3</div>
 
   </div>
 </div>
@@ -472,6 +480,7 @@
                   <li><a href="tableaux.html">Tableaux</a></li>
                   <li><a href="expositions.html">Expositions</a></li>
                   <li><a href="contact.html">Contact</a></li>
+                  <li><a href="mentions-legales.html">Mentions légales</a></li>
                 </ul>
             </div>
 
